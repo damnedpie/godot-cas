@@ -1,0 +1,42 @@
+[config]
+
+name="GodotCas"
+binary_type="local"
+binary="GodotCas.4.0.2.release.aar"
+
+[dependencies]
+
+remote=[
+	"com.google.android.gms:play-services-ads-identifier:18.1.0",
+	"com.tenjin:android-sdk:+",
+	"com.cleveradssolutions:cas-sdk:4.0.2",
+	"com.cleveradssolutions:ironsource:+",
+	"com.cleveradssolutions:google:+",
+	"com.cleveradssolutions:unity:+",
+	"com.cleveradssolutions:vungle:+",
+	"com.cleveradssolutions:inmobi:+",
+	"com.cleveradssolutions:chartboost:+",
+	"com.cleveradssolutions:fyber:+",
+	"com.cleveradssolutions:kidoz:+",
+	"com.cleveradssolutions:superawesome:+",
+	"com.cleveradssolutions:cas-exchange:+",
+	"com.cleveradssolutions:mintegral:+",
+	"com.cleveradssolutions:applovin:+",
+	"com.cleveradssolutions:facebook:+",
+	"com.cleveradssolutions:pangle:+",
+	"com.cleveradssolutions:yandex:+",
+	"com.cleveradssolutions:bigo:+",
+	"com.cleveradssolutions:ysonetwork:+",
+	"com.cleveradssolutions:ogury:+",
+	"com.cleveradssolutions:hyprmx:+",
+	"com.cleveradssolutions:startio:+",
+	]
+
+custom_maven_repos=[
+	"https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea",
+	"https://artifact.bytedance.com/repository/pangle",
+	"https://cboost.jfrog.io/artifactory/chartboost-ads/",
+	"https://aa-sdk.s3-eu-west-1.amazonaws.com/android_repo",
+	"https://ysonetwork.s3.eu-west-3.amazonaws.com/sdk/android",
+	"https://maven.ogury.co",
+]

@@ -1,0 +1,59 @@
+apply plugin: 'com.android.library'
+
+ext.pluginVersionCode = 1
+ext.pluginVersionName = "4.0.2"
+ext.zipName = "godot-cas"
+ext.godotVersion = "3.6"
+
+android {
+    compileSdk 34
+    namespace "com.onecat.godotcas"
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    defaultConfig {
+        minSdkVersion 23
+        targetSdkVersion 34
+        versionCode pluginVersionCode
+        versionName pluginVersionName
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    ndkVersion '23.2.8568313'
+    libraryVariants.configureEach { variant ->
+        variant.outputs.all { output ->
+            output.outputFileName = "GodotCas.$pluginVersionName.${variant.name}.aar"
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'org.godotengine:godot:3.6.0.stable'
+    implementation 'com.cleveradssolutions:cas-sdk:4.0.2'
+}
+
+tasks.register('buildIntoRelease', Copy) {
+    group = "build"
+    dependsOn tasks.build
+    from([buildDir.absolutePath, 'outputs', 'aar'].join(File.separator))
+    include("GodotCas.${pluginVersionName}.release.aar")
+    into([rootDir.absolutePath, 'release'].join(File.separator))
+}
+
+tasks.register('buildIntoReleaseAndPrepareForGithub', Zip) {
+    group = "build"
+    dependsOn tasks.buildIntoRelease
+    from([rootDir.absolutePath, 'release'].join(File.separator))
+    include("*.gd", "*.gdap", "*.aar")
+    archiveFileName = "${zipName}-${pluginVersionName}-${godotVersion}.zip"
+    destinationDirectory = file([rootDir.absolutePath, 'release'].join(File.separator))
+    def metaTxt = new File([rootDir.absolutePath, 'release', "github-meta.txt"].join(File.separator))
+    metaTxt.text = "SDK ${pluginVersionName}, Godot ${godotVersion}+, rev.1"
+    metaTxt.text += "\nSDK${pluginVersionName}GD${godotVersion}rev1"
+}
