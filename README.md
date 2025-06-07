@@ -55,8 +55,7 @@ func setCasId(id:String) -> void
 
 # CAS built in consent manager is enabled by default, but you can disable it.
 # It's still recommended to use their consent manager, so better leave it be.
-func setUseBuiltInConsentManager(enabled:bool) -> void:
-	_cas.setUseBuiltInConsentManager(enabled)
+func setUseBuiltInConsentManager(enabled:bool) -> void
 
 # If enabled, turns test ads mode on.
 func setTestAdMode(enabled:bool) -> void
@@ -108,8 +107,7 @@ enum CONSENT_STATUS {
 }
 
 # Use this if using your own consent manager. See CONSENT_STATUS enum.
-func setConsentStatus(status:int) -> void:
-	_cas.setConsentStatus(status)
+func setConsentStatus(status:int) -> void
 
 enum CCPA_STATUS {
 	UNDEFINED = 0
@@ -118,8 +116,7 @@ enum CCPA_STATUS {
 }
 
 # Use this if using your own consent manager. See CCPA_STATUS enum.
-func setCcpaStatus(status:int) -> void:
-	_cas.setCcpaStatus(status)
+func setCcpaStatus(status:int) -> void
 ```
 
 ### Testing consent flow
