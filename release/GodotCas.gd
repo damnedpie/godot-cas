@@ -38,7 +38,6 @@ var _cas : JNISingleton = null
 
 signal initialization_finished(error, country, legalProtected, consentFlowStatus)
 signal consent_flow_status_changed(status)
-signal on_resume
 
 signal interstitial_loaded(adContentInfo)
 signal interstitial_failed_to_load(adFormat, adError)
@@ -343,7 +342,6 @@ func setAppContentUrl(contentUrl:String) -> void:
 func connectSignals() -> void:
 	_cas.connect("initialization_finished", self, "_onInitializationFinished")
 	_cas.connect("consent_flow_status_changed", self, "_onConsentFlowStatusChanged")
-	_cas.connect("on_resume", self, "_onResume")
 
 	_cas.connect("interstitial_loaded", self, "_onInterstitialLoaded")
 	_cas.connect("interstitial_failed_to_load", self, "_onInterstitialFailedToLoad")
@@ -383,11 +381,6 @@ func _onInitializationFinished(initErrorOrNull:String, userCountryISO2orNull:Str
 # Fires when consent manager was invoked manually and consent status is obtained.
 func _onConsentFlowStatusChanged(status:int) -> void:
 	emit_signal("consent_flow_status_changed", status)
-
-# Fires when app was opened after minimizing (triggered every onMainResume()).
-# Also fires when a full-screen ad was closed.
-func _onResume() -> void:
-	emit_signal("on_resume")
 
 func _onInterstitialLoaded(adContentInfo:Dictionary) -> void:
 	emit_signal("interstitial_loaded", adContentInfo)

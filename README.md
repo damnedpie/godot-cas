@@ -1,10 +1,12 @@
-# Godot CAS 4.0.2
+# Godot CAS 4.1.0
 [![Godot](https://img.shields.io/badge/Godot%20Engine-3.6-blue?style=for-the-badge&logo=godotengine&logoSize=auto)](https://godotengine.org/)
-[![CAS.AI](https://img.shields.io/badge/CAS.AI_SDK_4.0.2-blue?style=for-the-badge&logoSize=auto)](https://cas.ai/)
+[![CAS.AI](https://img.shields.io/badge/CAS.AI_SDK_4.1.0-blue?style=for-the-badge&logoSize=auto)](https://cas.ai/)
 [![GitHub License](https://img.shields.io/github/license/damnedpie/godot-cas?style=for-the-badge)](#)
 [![GitHub Repo stars](https://img.shields.io/github/stars/damnedpie/godot-cas?style=for-the-badge&logo=github&logoSize=auto&color=%23FFD700)](#)
 
-CAS SDK 4.0.2 Android plugin for Godot. Built on Godot 3.6 AAR.
+CAS SDK 4.1.0 Android plugin for Godot. Built on Godot 3.6 AAR.
+
+[**Official Android Wiki**](https://github.com/cleveradssolutions/CAS-Android/wiki)
 
 ## Setup
 
@@ -32,6 +34,8 @@ CAS SDK 4.0.2 Android plugin for Godot. Built on Godot 3.6 AAR.
 This plugin's configuration file `GodotCas.gdap` contains all adapters out of the box (excluding beta and cross-promo). Usually it's not desirable because your app may be not making use of all of them and having unnecessary adapters present will increase build size. Feel free to add/remove adapters and their repositories according to your needs.
 
 Make sure to check out [**this list of adapters**](https://github.com/cleveradssolutions/CAS-Android/tree/master/Adapters#casai-mediation-adapters) and also [**this guide page**](https://github.com/cleveradssolutions/CAS-Android/wiki/Manual-setup) from CAS official wiki.
+
+Also check `adapters-list.txt` for precise dependencies and repositories for Optimal and Families presets.
 
 ### Other optional dependencies
 

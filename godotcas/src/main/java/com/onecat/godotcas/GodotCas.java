@@ -71,14 +71,6 @@ public class GodotCas extends GodotPlugin {
     }
 
     @Override
-    public void onMainResume() {
-        if (signalsRegistered) {
-            emitSignal("on_resume");
-        }
-        super.onMainResume();
-    }
-
-    @Override
     public void onMainDestroy() {
         if (interstitialAd != null) { interstitialAd.destroy(); }
         if (rewardedAd != null) { rewardedAd.destroy(); }
@@ -100,7 +92,6 @@ public class GodotCas extends GodotPlugin {
         // Basic
         signalInfoSet.add(new SignalInfo("initialization_finished", String.class, String.class, Boolean.class, Integer.class));
         signalInfoSet.add(new SignalInfo("consent_flow_status_changed", Integer.class));
-        signalInfoSet.add(new SignalInfo("on_resume"));
         // Interstitial
         signalInfoSet.add(new SignalInfo("interstitial_loaded", Dictionary.class));
         signalInfoSet.add(new SignalInfo("interstitial_failed_to_load", String.class, String.class));
