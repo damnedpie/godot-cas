@@ -273,6 +273,19 @@ func setAutoloadAppOpenAd(enabled:bool) -> void
 func setAutoshowAppOpenAd(enabled:bool) -> void
 ```
 
+### IAP logging with Tenjin
+
+You can log in-app purchase events to Tenjin with this plugin. Just make sure to obtain the necessary `purchase` data from Godot Google Play Billing Library Plugin.
+
+You will probably be calling this from inside `purchases_updated` signal of Billing Plugin, but I strongly advise you call logging with some delay (like 2 seconds). Reason being, TenjinSDK might be suspended in this particular moment and there's a possibility that your logging attempt won't go through.
+
+More info on data required can be found in [Tenjin docs](https://docs.tenjin.com/docs/android-sdk#purchase-events)
+```gdscript
+# Data for arguments is supposed to be obtained from Google Billing Library plugin for Godot.
+# CAS should be initialized with Tenjin key for this to work (might cause crash otherwise).
+func logTenjinPurchaseEvent(sku:String, currencyCode:String, quantity:int, price:float, originalJson:String, signature:String) -> void
+```
+
 ## Targeting options
 
 [**Official wiki page**](https://github.com/cleveradssolutions/CAS-Android/wiki/Targeting-options)

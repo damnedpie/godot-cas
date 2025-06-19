@@ -339,6 +339,11 @@ func setUserAppKeywords(keywords:PoolStringArray) -> void:
 func setAppContentUrl(contentUrl:String) -> void:
 	_cas.setAppContentUrl(contentUrl)
 
+# Data for arguments is supposed to be obtained from Google Billing Library plugin for Godot.
+# CAS should be initialized with Tenjin key for this to work (might cause crash otherwise).
+func logTenjinPurchaseEvent(sku:String, currencyCode:String, quantity:int, price:float, originalJson:String, signature:String) -> void:
+	_cas.logTenjinPurchaseEvent(sku, currencyCode, quantity, price, originalJson, signature)
+
 func connectSignals() -> void:
 	_cas.connect("initialization_finished", self, "_onInitializationFinished")
 	_cas.connect("consent_flow_status_changed", self, "_onConsentFlowStatusChanged")

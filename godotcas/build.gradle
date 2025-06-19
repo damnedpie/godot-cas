@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 
-ext.pluginVersionCode = 1
+ext.pluginVersionCode = 2
 ext.pluginVersionName = "4.1.0"
 ext.zipName = "godot-cas"
 ext.godotVersion = "3.6"
@@ -36,6 +36,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.7.0'
     implementation 'org.godotengine:godot:3.6.0.stable'
     implementation 'com.cleveradssolutions:cas-sdk:4.1.0'
+    implementation 'com.tenjin:android-sdk:+'
 }
 
 tasks.register('buildIntoRelease', Copy) {
@@ -55,8 +56,8 @@ tasks.register('buildIntoReleaseAndPrepareForGithub', Zip) {
     archiveFileName = "${zipName}-${pluginVersionName}-${godotVersion}.zip"
     destinationDirectory = file([rootDir.absolutePath, 'release'].join(File.separator))
     def metaTxt = new File([rootDir.absolutePath, 'release', "github-meta.txt"].join(File.separator))
-    metaTxt.text = "SDK ${pluginVersionName}, Godot ${godotVersion}+, rev.1"
-    metaTxt.text += "\nSDK${pluginVersionName}GD${godotVersion}rev1"
+    metaTxt.text = "SDK ${pluginVersionName}, Godot ${godotVersion}+, rev.${pluginVersionCode}"
+    metaTxt.text += "\nSDK${pluginVersionName}GD${godotVersion}rev${pluginVersionCode}"
 }
 
 import groovy.json.JsonSlurper;

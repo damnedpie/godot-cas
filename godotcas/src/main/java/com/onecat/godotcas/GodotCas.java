@@ -38,6 +38,7 @@ import com.cleversolutions.ads.TargetingOptions;
 import com.cleversolutions.ads.android.CAS;
 import com.cleversolutions.ads.android.CAS.ManagerBuilder;
 import com.cleversolutions.ads.android.CASBannerView;
+import com.tenjin.android.TenjinSDK;
 
 @SuppressWarnings({"unused"})
 public class GodotCas extends GodotPlugin {
@@ -763,6 +764,12 @@ public class GodotCas extends GodotPlugin {
     @UsedByGodot
     public void setAppContentUrl(String contentUrl) {
         CAS.getTargetingOptions().setContentUrl(contentUrl);
+    }
+
+    @UsedByGodot
+    public void logTenjinPurchaseEvent(String sku, String currencyCode, int quantity, float price, String originalJson, String signature) {
+        TenjinSDK tjInstance = TenjinSDK.getInstance(activity, tenjinKey);
+        tjInstance.transaction(sku, currencyCode, quantity, price, originalJson, signature);
     }
 
     /**
