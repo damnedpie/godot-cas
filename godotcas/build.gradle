@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 
-ext.pluginVersionCode = 2
+ext.pluginVersionCode = 3
 ext.pluginVersionName = "4.1.0"
 ext.zipName = "godot-cas"
 ext.godotVersion = "3.6"

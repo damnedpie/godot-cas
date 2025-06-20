@@ -294,6 +294,15 @@ public class GodotCas extends GodotPlugin {
     }
 
     @UsedByGodot
+    public void destroyInterstitial() {
+        if (interstitialAd == null) {
+            Log.w("Godot CAS Plugin", "Interstitial is not initialized, can't destroyInterstitial()");
+            return;
+        }
+        interstitialAd.destroy();
+    }
+
+    @UsedByGodot
     public void setAutoloadInterstitial(boolean enabled) {
         if (interstitialAd == null) {
             Log.w("Godot CAS Plugin", "Interstitial is not initialized, can't setAutoloadInterstitial()");
@@ -399,6 +408,15 @@ public class GodotCas extends GodotPlugin {
                 });
             }
         });
+    }
+
+    @UsedByGodot
+    public void destroyRewarded() {
+        if (rewardedAd == null) {
+            Log.w("Godot CAS Plugin", "Rewarded is not initialized, can't destroyRewarded()");
+            return;
+        }
+        rewardedAd.destroy();
     }
 
     @UsedByGodot
@@ -512,6 +530,15 @@ public class GodotCas extends GodotPlugin {
                 bannerAd.setVisibility(View.GONE);
             }
         });
+    }
+
+    @UsedByGodot
+    public void destroyBanner() {
+        if (bannerAd == null) {
+            Log.w("Godot CAS Plugin", "Banner is not initialized, can't destroyBanner()");
+            return;
+        }
+        bannerAd.destroy();
     }
 
     @UsedByGodot
@@ -648,6 +675,15 @@ public class GodotCas extends GodotPlugin {
                 appOpenAd.show(activity);
             }
         });
+    }
+
+    @UsedByGodot
+    public void destroyAppOpenAd() {
+        if (appOpenAd == null) {
+            Log.w("Godot CAS Plugin", "AppOpen ad is not initialized, can't destroyAppOpenAd()");
+            return;
+        }
+        appOpenAd.destroy();
     }
 
     @UsedByGodot

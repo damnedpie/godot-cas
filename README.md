@@ -1,8 +1,8 @@
 # Godot CAS 4.1.0
 [![Godot](https://img.shields.io/badge/Godot%20Engine-3.6-blue?style=for-the-badge&logo=godotengine&logoSize=auto)](https://godotengine.org/)
 [![CAS.AI](https://img.shields.io/badge/CAS.AI_SDK_4.1.0-blue?style=for-the-badge&logoSize=auto)](https://cas.ai/)
-[![GitHub License](https://img.shields.io/github/license/damnedpie/godot-cas?style=for-the-badge)](#)
-[![GitHub Repo stars](https://img.shields.io/github/stars/damnedpie/godot-cas?style=for-the-badge&logo=github&logoSize=auto&color=%23FFD700)](#)
+[![GitHub License](https://img.shields.io/github/license/damnedpie/godot-cas?style=for-the-badge)](https://github.com/damnedpie/godot-cas/blob/main/LICENSE)
+[![GitHub Repo stars](https://img.shields.io/github/stars/damnedpie/godot-cas?style=for-the-badge&logo=github&logoSize=auto&color=%23FFD700)](https://github.com/damnedpie/godot-cas/stargazers)
 
 CAS SDK 4.1.0 Android plugin for Godot. Built on Godot 3.6 AAR.
 
@@ -55,32 +55,32 @@ All methods below should come before `initializeCAS()` if called.
 ```gdscript
 # Mandatory. Sets CAS ID (usually your app package or bundle ID).
 # Not setting the ID before initializeCas() will lead to plugin crash.
-func setCasId(id:String) -> void
+setCasId(id:String) -> void
 
 # CAS built in consent manager is enabled by default, but you can disable it.
 # It's still recommended to use their consent manager, so better leave it be.
-func setUseBuiltInConsentManager(enabled:bool) -> void
+setUseBuiltInConsentManager(enabled:bool) -> void
 
 # If enabled, turns test ads mode on.
-func setTestAdMode(enabled:bool) -> void
+setTestAdMode(enabled:bool) -> void
 
 # See https://github.com/cleveradssolutions/CAS-Android/wiki/Impression-Level-Data#automatic-collect-ad-revenue
 # If using this, make sure you have TenjinSDK dependency in GodotCas.gdap configuration.
-func setTenjinKey(key:String) -> void
+setTenjinKey(key:String) -> void
 
 # See https://github.com/cleveradssolutions/CAS-Android/wiki/Additional-Meta-AudienceNetwork-steps
-func setFacebookLDU(enabled:bool) -> void
+setFacebookLDU(enabled:bool) -> void
 ```
 
 ### Testing and debugging
 
 ```gdscript
 # Debug Mode displays debug info with log tag "CAS". Disabled by default for performance.
-func setDebugMode(enabled:bool) -> void
+setDebugMode(enabled:bool) -> void
 
 # Adds testing device ID.
 # see https://github.com/cleveradssolutions/CAS-Android/wiki/Enabling-test-ads#enable-test-devices
-func addTestDeviceId(id:String) -> void
+addTestDeviceId(id:String) -> void
 ```
 
 ## Working with user data consent
@@ -93,10 +93,10 @@ CAS SDK provides automated consent screen workflow with their own consent screen
 
 ```gdscript
 # Shows consent manager if it is required (e.g. based on user's geo).
-func showConsentManagerIfRequired() -> void
+showConsentManagerIfRequired() -> void
 
 # Force-shows the consent manager.
-func showConsentManager() -> void
+showConsentManager() -> void
 ```
 
 ### Manual flow
@@ -111,7 +111,7 @@ enum CONSENT_STATUS {
 }
 
 # Use this if using your own consent manager. See CONSENT_STATUS enum.
-func setConsentStatus(status:int) -> void
+setConsentStatus(status:int) -> void
 
 enum CCPA_STATUS {
 	UNDEFINED = 0
@@ -120,7 +120,7 @@ enum CCPA_STATUS {
 }
 
 # Use this if using your own consent manager. See CCPA_STATUS enum.
-func setCcpaStatus(status:int) -> void
+setCcpaStatus(status:int) -> void
 ```
 
 ### Testing consent flow
@@ -128,17 +128,17 @@ You can also test consent screen behavior to make sure everything works as inten
 
 ```gdscript
 # Returns possible consent flow statuses as String : int dict for lookup.
-func getPossibleConsentFlowStatuses() -> Dictionary
+getPossibleConsentFlowStatuses() -> Dictionary
 
 # Returns possible debug geographies as String : int dict for lookup.
-func getPossibleDebugGeographies() -> Dictionary
+getPossibleDebugGeographies() -> Dictionary
 
 # Sets debug geography for consent manager testing.
 # Will have no effect unless force testing is enabled for consent manager.
-func setConsentDebugGeography(geography:int) -> void
+setConsentDebugGeography(geography:int) -> void
 
 # Enabled forced testing for consent manager.
-func setConsentForceTesting(enabled:bool) -> void
+setConsentForceTesting(enabled:bool) -> void
 ```
 
 ## Children-directed treatment
@@ -154,7 +154,7 @@ enum AUDIENCE {
 }
 
 # Specify what audience is the user in. See AUDIENCE enum.
-func setTaggedAudience(audienceType:int) -> void
+setTaggedAudience(audienceType:int) -> void
 
 ```
 
@@ -179,6 +179,9 @@ isInterstitialLoaded() -> bool
 
 # Shows the interstitial ad.
 showInterstitial() -> void
+
+# Destroys the interstitial ad instance.
+destroyInterstitial() -> void
 
 # Sets autoloading for interstitials, disabled by default.
 setAutoloadInterstitial(enabled:bool) -> void
@@ -205,6 +208,9 @@ isRewardedLoaded() -> bool
 # Shows the rewarded ad.
 showRewarded() -> void
 
+# Destroys the rewarded ad instance.
+destroyRewarded() -> void
+
 # Sets autoloading for rewarded, disabled by default.
 setAutoloadRewarded(enabled:bool) -> void
 
@@ -224,53 +230,59 @@ initializeBanner(bannerSize:int) -> void
 initializeAdaptiveBanner(maxWidthDpi:int) -> void
 
 # Loads the banner ad.
-func loadBanner() -> void
+loadBanner() -> void
 
 # Returns false if ad is not loaded yet or the CASBannerView object hasn't been initialized.
-func isBannerLoaded() -> bool
+isBannerLoaded() -> bool
 
 # Sets banner visibility.
-func setBannerVisible(isVisible:bool) -> void
+setBannerVisible(isVisible:bool) -> void
+
+# Destroys the banner ad instance.
+destroyBanner() -> void
 
 # Sets autoloading for banner. Enabled by default.
-func setAutoloadBanner(enabled:bool) -> void
+setAutoloadBanner(enabled:bool) -> void
 
 # Sets banner refresh interval. Should be longer than 10 seconds, 30 considered optimal (default).
-func setBannerRefreshInterval(seconds:int) -> void
+setBannerRefreshInterval(seconds:int) -> void
 
 # Disables ad refresh for banner.
-func disableBannerAdRefresh() -> void
+disableBannerAdRefresh() -> void
 
 # Sets banner position in device's actual viewport.
-func setBannerPosition(posX:float, posY:float) -> void
+setBannerPosition(posX:float, posY:float) -> void
 
 # Returns banner width in device's actual viewport.
-func getBannerWidth() -> int
+getBannerWidth() -> int
 
 # Returns banner height in device's actual viewport.
-func getBannerHeight() -> int
+getBannerHeight() -> int
 ```
 
 ### App Open ads
 [**Official wiki page**](https://github.com/cleveradssolutions/CAS-Android/wiki/App-Open-Ads)
 ```gdscript
 # Initializes the CASAppOpen object in the plugin and creates callbacks.
-func initializeAppOpenAd() -> void
+initializeAppOpenAd() -> void
 
 # Loads the AppOpen ad.
-func loadAppOpenAd() -> void
+loadAppOpenAd() -> void
 
 # Returns false if ad is not loaded yet or the CASAppOpen object hasn't been initialized.
-func isAppOpenAdLoaded() -> bool
+isAppOpenAdLoaded() -> bool
 
 # Shows the AppOpen ad.
-func showAppOpenAd() -> void
+showAppOpenAd() -> void
+
+# Destroys the AppOpen ad instance.
+destroyAppOpenAd() -> void
 
 # Sets autoloading for AppOpen ad, disabled by default.
-func setAutoloadAppOpenAd(enabled:bool) -> void
+setAutoloadAppOpenAd(enabled:bool) -> void
 
 # Sets autoshowing for AppOpen ad, disabled by default.
-func setAutoshowAppOpenAd(enabled:bool) -> void
+setAutoshowAppOpenAd(enabled:bool) -> void
 ```
 
 ### IAP logging with Tenjin
@@ -283,7 +295,7 @@ More info on data required can be found in [Tenjin docs](https://docs.tenjin.com
 ```gdscript
 # Data for arguments is supposed to be obtained from Google Billing Library plugin for Godot.
 # CAS should be initialized with Tenjin key for this to work (might cause crash otherwise).
-func logTenjinPurchaseEvent(sku:String, currencyCode:String, quantity:int, price:float, originalJson:String, signature:String) -> void
+logTenjinPurchaseEvent(sku:String, currencyCode:String, quantity:int, price:float, originalJson:String, signature:String) -> void
 ```
 
 ## Targeting options
@@ -292,10 +304,10 @@ func logTenjinPurchaseEvent(sku:String, currencyCode:String, quantity:int, price
 
 ```gdscript
 # See https://github.com/cleveradssolutions/CAS-Android/wiki/Targeting-options#user-id
-func setUserID(userID:String) -> void
+setUserID(userID:String) -> void
 
 # See https://github.com/cleveradssolutions/CAS-Android/wiki/Targeting-options#user-age
-func setUserAge(age:int) -> void
+setUserAge(age:int) -> void
 
 enum GENDER {
 	UNKNOWN = 0,
@@ -305,14 +317,14 @@ enum GENDER {
 
 # See GENDER enum for the argument.
 # See https://github.com/cleveradssolutions/CAS-Android/wiki/Targeting-options#user-gender
-func setUserGender(gender:int) -> void
+setUserGender(gender:int) -> void
 
 # See https://github.com/cleveradssolutions/CAS-Android/wiki/Targeting-options#user-location-auto-collection
-func setUserLocationAutocollection(enabled:bool) -> void
+setUserLocationAutocollection(enabled:bool) -> void
 
 # See https://github.com/cleveradssolutions/CAS-Android/wiki/Targeting-options#app-keywords
-func setUserAppKeywords(keywords:PoolStringArray) -> void
+setUserAppKeywords(keywords:PoolStringArray) -> void
 
 # See https://github.com/cleveradssolutions/CAS-Android/wiki/Targeting-options#app-content-url
-func setAppContentUrl(contentUrl:String) -> void
+setAppContentUrl(contentUrl:String) -> void
 ```

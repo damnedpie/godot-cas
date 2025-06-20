@@ -147,6 +147,10 @@ func isInterstitialLoaded() -> bool:
 func showInterstitial() -> void:
 	_cas.showInterstitial()
 
+# Destroys the interstitial ad instance.
+func destroyInterstitial() -> void:
+	_cas.destroyInterstitial()
+
 # Sets autoloading for interstitials, disabled by default.
 func setAutoloadInterstitial(enabled:bool) -> void:
 	_cas.setAutoloadInterstitial(enabled)
@@ -174,6 +178,10 @@ func isRewardedLoaded() -> bool:
 # Shows the rewarded ad.
 func showRewarded() -> void:
 	_cas.showRewarded()
+
+# Destroys the rewarded ad instance.
+func destroyRewarded() -> void:
+	_cas.destroyRewarded()
 
 # Sets autoloading for rewarded, disabled by default.
 func setAutoloadRewarded(enabled:bool) -> void:
@@ -204,6 +212,10 @@ func isBannerLoaded() -> bool:
 # Sets banner visibility.
 func setBannerVisible(isVisible:bool) -> void:
 	_cas.setBannerVisible(isVisible)
+
+# Destroys the banner ad instance.
+func destroyBanner() -> void:
+	_cas.destroyBanner()
 
 # Sets autoloading for banner. Enabled by default.
 func setAutoloadBanner(enabled:bool) -> void:
@@ -244,6 +256,10 @@ func isAppOpenAdLoaded() -> bool:
 # Shows the AppOpen ad.
 func showAppOpenAd() -> void:
 	_cas.showAppOpenAd()
+
+# Destroys the AppOpen ad instance.
+func destroyAppOpenAd() -> void:
+	_cas.destroyAppOpenAd()
 
 # Sets autoloading for AppOpen ad, disabled by default.
 func setAutoloadAppOpenAd(enabled:bool) -> void:
