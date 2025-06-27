@@ -1,10 +1,10 @@
-# Godot CAS 4.1.0
+# Godot CAS 4.1.2
 [![Godot](https://img.shields.io/badge/Godot%20Engine-3.6-blue?style=for-the-badge&logo=godotengine&logoSize=auto)](https://godotengine.org/)
-[![CAS.AI](https://img.shields.io/badge/CAS.AI_SDK_4.1.0-blue?style=for-the-badge&logoSize=auto)](https://cas.ai/)
+[![CAS.AI](https://img.shields.io/badge/CAS.AI_SDK_4.1.2-blue?style=for-the-badge&logoSize=auto)](https://cas.ai/)
 [![GitHub License](https://img.shields.io/github/license/damnedpie/godot-cas?style=for-the-badge)](https://github.com/damnedpie/godot-cas/blob/main/LICENSE)
 [![GitHub Repo stars](https://img.shields.io/github/stars/damnedpie/godot-cas?style=for-the-badge&logo=github&logoSize=auto&color=%23FFD700)](https://github.com/damnedpie/godot-cas/stargazers)
 
-CAS SDK 4.1.0 Android plugin for Godot. Built on Godot 3.6 AAR.
+CAS SDK 4.1.2 Android plugin for Godot. Built on Godot 3.6 AAR.
 
 [**Official Android Wiki**](https://github.com/cleveradssolutions/CAS-Android/wiki)
 
@@ -28,6 +28,22 @@ CAS SDK 4.1.0 Android plugin for Godot. Built on Godot 3.6 AAR.
 4. Get your `cas_settings[settings_id].json` file from CAS dashboard and put it into `android/build/res/raw` folder.
 
 5. (Optional) Add `com.google.android.gms.permission.AD_ID` permission to your Android export template if you want to use AD ID (which is usually the case). You can also add `android.permission.ACCESS_COARSE_LOCATION` and `android.permission.READ_PHONE_STATE` permissions if your app has real usecases for those (this can improve monetization).
+
+### Android 7.1.1 and 7.1.2
+
+Currently there are issues with some adapters causing crashes on API levels 25 and 26 (7.1.1 and 7.1.2). This is caused by some other adapters forcing 'play-services-ads-identifier:18.2.0' while the adapters in question can only work with 'play-services-ads-identifier:18.2.0'. If you are supporting those API levels, add the following to your `android/build/build.gradle`:
+
+```groovy
+configurations.all {
+    resolutionStrategy {
+        force 'com.google.android.gms:play-services-ads-identifier:18.1.0'
+    }
+}
+
+```
+
+[More info on this issue here.](https://github.com/cleveradssolutions/CAS-Android/issues/26)
+
 
 ### Ad network adapters
 
