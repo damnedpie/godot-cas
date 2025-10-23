@@ -4,4 +4,3 @@
 #
 # For more details, see
 #   http://developer.android.com/guide/developing/tools/proguard.html
--keep public class com.onecat.godotcas.GodotCas {public *;}

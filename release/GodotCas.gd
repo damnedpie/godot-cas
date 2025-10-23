@@ -85,7 +85,8 @@ func initialize() -> void:
 	addTestDeviceId("your-test-device-id")
 	setTestAdMode(true)
 	setDebugMode(true)
-
+	initializeInterstitial()
+	initializeRewarded()
 	initializeCas()
 
 # Call before initializeCas()
@@ -131,7 +132,16 @@ func initializeCas() -> void:
 	var versionString = "%s.%s.%s" % [versionInfo["major"], versionInfo["minor"], versionInfo["patch"]]
 	_cas.initializeCAS(versionString)
 
+# Returns true if the plugin was created successfully and CAS SDK initialized with no errors.
+func isInitialized() -> bool:
+	return _cas.isInitialized()
+
+# Call Integration Helper and check current integration in logcat. LOG TAG: CASIntegrationHelper
+func validateIntegration() -> void:
+	_cas.validateIntegration()
+
 # Initializes the CASInterstitial object in the plugin and creates callbacks.
+# Can be done before initializing the SDK, but CAS ID must be set beforehand.
 func initializeInterstitial() -> void:
 	_cas.initializeInterstitial()
 
@@ -164,6 +174,7 @@ func restartIntervalInterstitial() -> void:
 	_cas.restartIntervalInterstitial()
 
 # Initializes the CASRewarded object in the plugin and creates callbacks.
+# Can be done before initializing the SDK, but CAS ID must be set beforehand.
 func initializeRewarded() -> void:
 	_cas.initializeRewarded()
 
@@ -193,11 +204,13 @@ func setRewardedExtraFillInterstitial(enabled:bool) -> void:
 
 # Initializes CASBannerView. See BANNER_SIZE enum.
 # Also see https://github.com/cleveradssolutions/CAS-Android/wiki/Banner-Ads#set-ad-size
+# Can be done before initializing the SDK, but CAS ID must be set beforehand.
 func initializeBanner(bannerSize:int) -> void:
 	_cas.initializeBanner(bannerSize)
 
 # Initializes CASBannerView with adaptive size.
 # See https://github.com/cleveradssolutions/CAS-Android/wiki/Banner-Ads#adaptive-banners
+# Can be done before initializing the SDK, but CAS ID must be set beforehand.
 func initializeAdaptiveBanner(maxWidthDpi:int) -> void:
 	_cas.initializeAdaptiveBanner(maxWidthDpi)
 
@@ -242,6 +255,7 @@ func getBannerHeight() -> int:
 	return _cas.getBannerHeight()
 
 # Initializes the CASAppOpen object in the plugin and creates callbacks.
+# Can be done before initializing the SDK, but CAS ID must be set beforehand.
 func initializeAppOpenAd() -> void:
 	_cas.initializeAppOpenAd()
 
@@ -359,6 +373,10 @@ func setAppContentUrl(contentUrl:String) -> void:
 # CAS should be initialized with Tenjin key for this to work (might cause crash otherwise).
 func logTenjinPurchaseEvent(sku:String, currencyCode:String, quantity:int, price:float, originalJson:String, signature:String) -> void:
 	_cas.logTenjinPurchaseEvent(sku, currencyCode, quantity, price, originalJson, signature)
+
+# Returns true if the device has WIFI or Mobile traffic enabled. This doesn't guarantee real internet connection.
+func isWifiOrMobileInternetEnabled() -> bool:
+	return _cas.isWifiOrMobileInternetEnabled()
 
 func connectSignals() -> void:
 	_cas.connect("initialization_finished", self, "_onInitializationFinished")

@@ -1,23 +1,23 @@
-CAS network adapters for SDK 4.1.2
+CAS network adapters for SDK 4.3.0
 
 Parsed from https://github.com/cleveradssolutions/CAS-Unity/blob/master/Editor/BuildConfig/CASAndroidMediation.list
 
 OptimalAds dependencies: 
-	"com.cleveradssolutions:cas-sdk:4.1.2"
-	"com.cleveradssolutions:ironsource:8.9.1.0",
-	"com.cleveradssolutions:unity:4.15.0.0",
-	"com.cleveradssolutions:google:24.4.0.1",
+	"com.cleveradssolutions:cas-sdk:4.3.0",
+	"com.cleveradssolutions:ironsource:8.10.0.0",
+	"com.cleveradssolutions:unity:4.16.0.0",
+	"com.cleveradssolutions:google:24.5.0.0",
 	"com.cleveradssolutions:vungle:7.5.0.0",
-	"com.cleveradssolutions:inmobi:10.8.3.0",
-	"com.cleveradssolutions:chartboost:9.8.3.2",
-	"com.cleveradssolutions:fyber:8.3.7.0",
-	"com.cleveradssolutions:mintegral:16.9.71.2",
-	"com.cleveradssolutions:applovin:13.3.1.0",
-	"com.cleveradssolutions:pangle:7.2.0.6",
-	"com.cleveradssolutions:bigo:5.3.0.2",
-	"com.cleveradssolutions:yandex:27.14.0.0",
+	"com.cleveradssolutions:inmobi:10.8.7.0",
+	"com.cleveradssolutions:chartboost:9.9.2.0",
+	"com.cleveradssolutions:fyber:8.3.8.0",
+	"com.cleveradssolutions:mintegral:16.9.91.0",
+	"com.cleveradssolutions:applovin:13.3.1.1",
+	"com.cleveradssolutions:pangle:7.3.0.5",
+	"com.cleveradssolutions:bigo:5.5.0.0",
+	"com.cleveradssolutions:yandex:27.15.0.0",
 	"com.cleveradssolutions:facebook:6.20.0.0",
-	"com.cleveradssolutions:cas-exchange:4.1.0",
+	"com.cleveradssolutions:cas-exchange:4.3.0",
 
 OptimalAds repositories: 
 	"https://cboost.jfrog.io/artifactory/chartboost-ads/",
@@ -25,14 +25,14 @@ OptimalAds repositories:
 	"https://artifact.bytedance.com/repository/pangle",
 
 FamiliesAds dependencies: 
-	"com.cleveradssolutions:cas-sdk:4.1.2"
-	"com.cleveradssolutions:ironsource:8.9.1.0",
-	"com.cleveradssolutions:unity:4.15.0.0",
-	"com.cleveradssolutions:google:24.4.0.1",
+	"com.cleveradssolutions:cas-sdk:4.3.0",
+	"com.cleveradssolutions:ironsource:8.10.0.0",
+	"com.cleveradssolutions:unity:4.16.0.0",
+	"com.cleveradssolutions:google:24.5.0.0",
 	"com.cleveradssolutions:vungle:7.5.0.0",
-	"com.cleveradssolutions:inmobi:10.8.3.0",
-	"com.cleveradssolutions:chartboost:9.8.3.2",
-	"com.cleveradssolutions:fyber:8.3.7.0",
+	"com.cleveradssolutions:inmobi:10.8.7.0",
+	"com.cleveradssolutions:chartboost:9.9.2.0",
+	"com.cleveradssolutions:fyber:8.3.8.0",
 	"com.cleveradssolutions:kidoz:10.0.4.0",
 
 FamiliesAds repositories: 

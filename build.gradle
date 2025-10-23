@@ -1,21 +1,117 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
+plugins {
+    id("com.android.library")
+}
+
+ext.pluginVersionCode = 1
+ext.pluginVersionName = "4.3.0"
+ext.zipName = "godot-cas"
+ext.godotVersion = "3.6.2"
+
+android {
+    namespace "com.onecat.godotcas"
+    compileSdk 35
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
-    dependencies {
-        classpath "com.android.tools.build:gradle:8.2.0"
+    defaultConfig {
+        minSdkVersion 24
+        targetSdkVersion 35
+        versionCode pluginVersionCode
+        versionName pluginVersionName
+        consumerProguardFiles("proguard-rules.pro")
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+        }
+        release {
+            minifyEnabled false
+        }
+    }
+    ndkVersion '28.1.13356709'
+    buildToolsVersion '35.0.0'
+    libraryVariants.configureEach { variant ->
+        variant.outputs.all { output ->
+            output.outputFileName = "GodotCas.$pluginVersionName.${variant.name}.aar"
+        }
     }
 }
 
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
+dependencies {
+    // Getting Godot dependency locally
+    //compileOnly fileTree(dir:"libs", include:["godot-lib.release.aar"])
+    // Intended way of getting Godot dependencies
+    compileOnly 'org.godotengine:godot:3.6.2.stable'
+    compileOnly 'com.cleveradssolutions:cas-sdk:4.3.0'
+    compileOnly 'com.tenjin:android-sdk:+'
 }
 
-tasks.register('clean', Delete) {
-    delete rootProject.buildDir
+tasks.register('buildIntoRelease', Copy) {
+    group = "build"
+    dependsOn tasks.build
+    dependsOn tasks.parseAdaptersList
+    from([buildDir.absolutePath, 'outputs', 'aar'].join(File.separator))
+    include("GodotCas.${pluginVersionName}.release.aar")
+    into([rootDir.absolutePath, 'release'].join(File.separator))
+}
+
+tasks.register('buildIntoReleaseAndPrepareForGithub', Zip) {
+    group = "build"
+    dependsOn tasks.buildIntoRelease
+    from([rootDir.absolutePath, 'release'].join(File.separator))
+    include("*.gd", "*.gdap", "*.aar", "adapters-list.txt")
+    archiveFileName = "${zipName}-${pluginVersionName}-${godotVersion}.zip"
+    destinationDirectory = file([rootDir.absolutePath, 'release'].join(File.separator))
+    def metaTxt = new File([rootDir.absolutePath, 'release', "github-meta.txt"].join(File.separator))
+    metaTxt.text = "SDK ${pluginVersionName}, Godot ${godotVersion}+, rev.${pluginVersionCode}"
+    metaTxt.text += "\nSDK${pluginVersionName}GD${godotVersion}rev${pluginVersionCode}"
+}
+
+import groovy.json.JsonSlurper;
+
+tasks.register('parseAdaptersList') {
+    group = "build"
+    TextResource adaptersRawText = resources.text.fromUri("https://raw.githubusercontent.com/cleveradssolutions/CAS-Unity/refs/heads/master/Editor/BuildConfig/CASAndroidMediation.list")
+    Map<String, String> jsonMap = new JsonSlurper().parseText(adaptersRawText.asString())
+
+    ArrayList filtersInfo = jsonMap.get("simple")
+    List<Map<String, Object>> filters = [];
+    for (int i = 0; i < filtersInfo.size(); i++) {
+        filters.add(filtersInfo.get(i))
+    }
+    ArrayList adaptersInfo = jsonMap.get("adapters")
+    List<Map<String, Object>> adapters = [];
+    for (int i = 0; i < adaptersInfo.size(); i++) {
+        adapters.add(adaptersInfo.get(i))
+    }
+    List<String> outputStrings = []
+    outputStrings.add("CAS network adapters for SDK ".concat(jsonMap.get("version")).concat("\n"))
+    outputStrings.add("Parsed from ".concat("https://github.com/cleveradssolutions/CAS-Unity/blob/master/Editor/BuildConfig/CASAndroidMediation.list").concat("\n"))
+    for (Map<String, Object> filter : filters) {
+        String depString = filter.get("name").concat(" dependencies: \n")
+        depString += "\t\"com.cleveradssolutions:cas-sdk:".concat(jsonMap.get("version")).concat("\",\n")
+        String repString = filter.get("name").concat(" repositories: \n")
+        for (Map<String, Object> adapter : adapters) {
+            int[] contains = filter.get("contains")
+            if (contains.contains(adapter.get("id"))) {
+                Map<String, String> adapterLibs = adapter.get("libs")[0]
+                depString += "\t\""
+                depString += adapterLibs.get("name")
+                depString += adapterLibs.get("version")
+                depString += "\",\n"
+                if (adapter.containsKey("source")) {
+                    repString += "\t\""
+                    repString += adapter.get("source")
+                    repString += "\",\n"
+                }
+            }
+        }
+        outputStrings.add(depString.concat("\n").concat(repString))
+    }
+    File parsedInfo = new File([rootDir.absolutePath, 'release', "adapters-list.txt"].join(File.separator))
+    parsedInfo.text = ""
+    for (String outputString : outputStrings) {
+        parsedInfo.text += outputString.concat("\n")
+    }
 }

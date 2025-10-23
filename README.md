@@ -1,10 +1,10 @@
-# Godot CAS 4.1.2
-[![Godot](https://img.shields.io/badge/Godot%20Engine-3.6-blue?style=for-the-badge&logo=godotengine&logoSize=auto)](https://godotengine.org/)
-[![CAS.AI](https://img.shields.io/badge/CAS.AI_SDK_4.1.2-blue?style=for-the-badge&logoSize=auto)](https://cas.ai/)
+# Godot CAS 4.3.0
+[![Godot](https://img.shields.io/badge/Godot%20Engine-3.6.2-blue?style=for-the-badge&logo=godotengine&logoSize=auto)](https://godotengine.org/)
+[![CAS.AI](https://img.shields.io/badge/CAS.AI_SDK_4.3.0-blue?style=for-the-badge&logoSize=auto)](https://cas.ai/)
 [![GitHub License](https://img.shields.io/github/license/damnedpie/godot-cas?style=for-the-badge)](https://github.com/damnedpie/godot-cas/blob/main/LICENSE)
 [![GitHub Repo stars](https://img.shields.io/github/stars/damnedpie/godot-cas?style=for-the-badge&logo=github&logoSize=auto&color=%23FFD700)](https://github.com/damnedpie/godot-cas/stargazers)
 
-CAS SDK 4.1.2 Android plugin for Godot. Built on Godot 3.6 AAR.
+CAS SDK 4.3.0 Android plugin for Godot. Built on Godot 3.6.2 dependency.
 
 [**Official Android Wiki**](https://github.com/cleveradssolutions/CAS-Android/wiki)
 
@@ -21,7 +21,7 @@ CAS SDK 4.1.2 Android plugin for Godot. Built on Godot 3.6 AAR.
 	<application android:label="@string/godot_project_name_string" android:allowBackup="false" android:isGame="true" android:hasFragileUserData="false" android:requestLegacyExternalStorage="false" tools:ignore="GoogleAppIndexingWarning" android:icon="@mipmap/icon">
 			<meta-data
 				android:name="com.google.android.gms.ads.APPLICATION_ID"
-				android:value="ca-app-pub-3940256099942544~3347511713" />
+				android:value="ca-app-pub-YOUR_ADMOB_ID_HERE" />
 				<!-- Other metadata... -->
 	```
 
@@ -31,7 +31,7 @@ CAS SDK 4.1.2 Android plugin for Godot. Built on Godot 3.6 AAR.
 
 ### Android 7.1.1 and 7.1.2
 
-Currently there are issues with some adapters causing crashes on API levels 25 and 26 (7.1.1 and 7.1.2). This is caused by some other adapters forcing 'play-services-ads-identifier:18.2.0' while the adapters in question can only work with 'play-services-ads-identifier:18.2.0'. If you are supporting those API levels, add the following to your `android/build/build.gradle`:
+Currently there are issues with some adapters causing crashes on API levels 25 and 26 (7.1.1 and 7.1.2). This is caused by some of the adapters forcing 'play-services-ads-identifier:18.2.0' while the adapters in question can only work with 'play-services-ads-identifier:18.1.0'. If you are supporting those API levels, add the following to your `android/build/build.gradle`:
 
 ```groovy
 configurations.all {
@@ -301,11 +301,13 @@ setAutoloadAppOpenAd(enabled:bool) -> void
 setAutoshowAppOpenAd(enabled:bool) -> void
 ```
 
-### IAP logging with Tenjin
+## IAP logging with Tenjin
 
 You can log in-app purchase events to Tenjin with this plugin. Just make sure to obtain the necessary `purchase` data from Godot Google Play Billing Library Plugin.
 
 You will probably be calling this from inside `purchases_updated` signal of Billing Plugin, but I strongly advise you call logging with some delay (like 2 seconds). Reason being, TenjinSDK might be suspended in this particular moment and there's a possibility that your logging attempt won't go through.
+
+Make sure that Tenjin dependency is present in plugins GDAP file.
 
 More info on data required can be found in [Tenjin docs](https://docs.tenjin.com/docs/android-sdk#purchase-events)
 ```gdscript
@@ -343,4 +345,19 @@ setUserAppKeywords(keywords:PoolStringArray) -> void
 
 # See https://github.com/cleveradssolutions/CAS-Android/wiki/Targeting-options#app-content-url
 setAppContentUrl(contentUrl:String) -> void
+```
+
+## Utilities
+
+CAS SDK can output integration status to logcat, displaying what adapters are integrated or not.
+```gdscript
+# Call Integration Helper and check current integration in logcat. LOG TAG: CASIntegrationHelper
+func validateIntegration() -> void
+```
+
+You can check if user has WIFI/Mobile traffic enabled on their device. This DOES NOT guarantee a working internet connection and only checks the status of WIFI and mobile traffic enabled in Android. For example, if user is connected to a WIFI but this WIFI doesn't give access to Internet, this will still return true.
+```gdscript
+# Returns true if the device has WIFI or Mobile traffic enabled. This doesn't guarantee real internet connection.
+func isWifiOrMobileInternetEnabled() -> bool
+
 ```
