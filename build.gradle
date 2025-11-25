@@ -3,7 +3,7 @@ plugins {
 }
 
 ext.pluginVersionCode = 1
-ext.pluginVersionName = "4.4.2"
+ext.pluginVersionName = "4.5.0"
 ext.zipName = "godot-cas"
 ext.godotVersion = "3.6.2"
 
@@ -43,7 +43,7 @@ dependencies {
     //compileOnly fileTree(dir:"libs", include:["godot-lib.release.aar"])
     // Intended way of getting Godot dependencies
     compileOnly 'org.godotengine:godot:3.6.2.stable'
-    compileOnly 'com.cleveradssolutions:cas-sdk:4.4.2'
+    compileOnly 'com.cleveradssolutions:cas-sdk:4.5.0'
     compileOnly 'com.tenjin:android-sdk:+'
 }
 

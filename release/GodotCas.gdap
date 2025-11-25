@@ -2,27 +2,27 @@
 
 name="GodotCas"
 binary_type="local"
-binary="GodotCas.4.4.2.release.aar"
+binary="GodotCas.4.5.0.release.aar"
 
 [dependencies]
 
 remote=[
-    "com.google.android.gms:play-services-ads-identifier:18.1.0",
-	"com.cleveradssolutions:cas-sdk:4.4.2",
-	"com.cleveradssolutions:ironsource:9.0.0.1",
-	"com.cleveradssolutions:unity:4.16.3.0",
-	"com.cleveradssolutions:google:24.7.0.0",
-	"com.cleveradssolutions:vungle:7.6.0.0",
-	"com.cleveradssolutions:inmobi:10.8.8.0",
-	"com.cleveradssolutions:chartboost:9.10.0.0",
-	"com.cleveradssolutions:fyber:8.4.0.0",
-	"com.cleveradssolutions:mintegral:16.10.11.0",
-	"com.cleveradssolutions:applovin:13.5.0.1",
-	"com.cleveradssolutions:pangle:7.7.0.2",
-	"com.cleveradssolutions:bigo:5.5.2.0",
-	"com.cleveradssolutions:yango:7.16.1.0",
-	"com.cleveradssolutions:facebook:6.20.0.1",
-	"com.cleveradssolutions:cas-exchange:4.3.1",
+	"com.google.android.gms:play-services-ads-identifier:18.1.0",
+	"com.cleveradssolutions:cas-sdk:4.5.0",
+	"com.cleveradssolutions:ironsource:9.1.0.0",
+	"com.cleveradssolutions:unity:4.16.4.0",
+	"com.cleveradssolutions:google:24.8.0.0",
+	"com.cleveradssolutions:vungle:7.6.1.0",
+	"com.cleveradssolutions:inmobi:11.1.0.0",
+	"com.cleveradssolutions:chartboost:9.10.2.0",
+	"com.cleveradssolutions:fyber:8.4.1.0",
+	"com.cleveradssolutions:mintegral:17.0.31.0",
+	"com.cleveradssolutions:applovin:13.5.1.0",
+	"com.cleveradssolutions:pangle:7.8.0.7",
+	"com.cleveradssolutions:bigo:5.6.2.0",
+	"com.cleveradssolutions:yango:7.17.0.0",
+	"com.cleveradssolutions:facebook:6.21.0.0",
+	"com.cleveradssolutions:cas-exchange:4.5.0",
 	]
 
 custom_maven_repos=[
