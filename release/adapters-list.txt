@@ -1,23 +1,23 @@
-CAS network adapters for SDK 4.5.0
+CAS network adapters for SDK 4.5.2
 
 Parsed from https://github.com/cleveradssolutions/CAS-Unity/blob/master/Editor/BuildConfig/CASAndroidMediation.list
 
 OptimalAds dependencies: 
-	"com.cleveradssolutions:cas-sdk:4.5.0",
-	"com.cleveradssolutions:ironsource:9.1.0.0",
-	"com.cleveradssolutions:unity:4.16.4.0",
-	"com.cleveradssolutions:google:24.8.0.0",
-	"com.cleveradssolutions:vungle:7.6.1.0",
+	"com.cleveradssolutions:cas-sdk:4.5.2",
+	"com.cleveradssolutions:ironsource:9.2.0.0",
+	"com.cleveradssolutions:unity:4.16.5.0",
+	"com.cleveradssolutions:google:24.9.0.0",
+	"com.cleveradssolutions:vungle:7.6.2.0",
 	"com.cleveradssolutions:inmobi:11.1.0.0",
 	"com.cleveradssolutions:chartboost:9.10.2.0",
-	"com.cleveradssolutions:fyber:8.4.1.0",
-	"com.cleveradssolutions:mintegral:17.0.31.0",
-	"com.cleveradssolutions:applovin:13.5.1.0",
-	"com.cleveradssolutions:pangle:7.8.0.7",
+	"com.cleveradssolutions:fyber:8.4.1.1",
+	"com.cleveradssolutions:mintegral:17.0.41.0",
+	"com.cleveradssolutions:applovin:13.5.1.1",
+	"com.cleveradssolutions:pangle:7.8.0.8",
 	"com.cleveradssolutions:bigo:5.6.2.0",
-	"com.cleveradssolutions:yango:7.17.0.0",
+	"com.cleveradssolutions:yango:7.18.1.0",
 	"com.cleveradssolutions:facebook:6.21.0.0",
-	"com.cleveradssolutions:cas-exchange:4.5.0",
+	"com.cleveradssolutions:cas-exchange:4.5.2",
 
 OptimalAds repositories: 
 	"https://cboost.jfrog.io/artifactory/chartboost-ads/",
@@ -25,15 +25,15 @@ OptimalAds repositories:
 	"https://artifact.bytedance.com/repository/pangle",
 
 FamiliesAds dependencies: 
-	"com.cleveradssolutions:cas-sdk:4.5.0",
-	"com.cleveradssolutions:ironsource:9.1.0.0",
-	"com.cleveradssolutions:unity:4.16.4.0",
-	"com.cleveradssolutions:google:24.8.0.0",
-	"com.cleveradssolutions:vungle:7.6.1.0",
+	"com.cleveradssolutions:cas-sdk:4.5.2",
+	"com.cleveradssolutions:ironsource:9.2.0.0",
+	"com.cleveradssolutions:unity:4.16.5.0",
+	"com.cleveradssolutions:google:24.9.0.0",
+	"com.cleveradssolutions:vungle:7.6.2.0",
 	"com.cleveradssolutions:inmobi:11.1.0.0",
 	"com.cleveradssolutions:chartboost:9.10.2.0",
-	"com.cleveradssolutions:fyber:8.4.1.0",
-	"com.cleveradssolutions:kidoz:10.1.4.0",
+	"com.cleveradssolutions:fyber:8.4.1.1",
+	"com.cleveradssolutions:kidoz:10.1.5.0",
 
 FamiliesAds repositories: 
 	"https://cboost.jfrog.io/artifactory/chartboost-ads/",
