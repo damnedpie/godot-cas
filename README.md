@@ -1,4 +1,4 @@
-# Godot CAS 4.5.2
+# Godot CAS 4.5.4
 [![Godot](https://img.shields.io/badge/Godot%20Engine-3.6.2-blue?style=for-the-badge&logo=godotengine&logoSize=auto)](https://godotengine.org/)
 [![CAS.AI](https://img.shields.io/badge/CAS.AI_SDK_4.5.4-blue?style=for-the-badge&logoSize=auto)](https://cas.ai/)
 [![GitHub License](https://img.shields.io/github/license/damnedpie/godot-cas?style=for-the-badge)](https://github.com/damnedpie/godot-cas/blob/main/LICENSE)
