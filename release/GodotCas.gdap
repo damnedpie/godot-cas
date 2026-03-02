@@ -2,25 +2,25 @@
 
 name="GodotCas"
 binary_type="local"
-binary="GodotCas.4.6.2.release.aar"
+binary="GodotCas.4.6.3.release.aar"
 
 [dependencies]
 
 remote=[
 	"com.google.android.gms:play-services-ads-identifier:18.1.0",
-	"com.cleveradssolutions:cas-sdk:4.6.2",
-	"com.cleveradssolutions:ironsource:9.3.0.0",
+	"com.cleveradssolutions:cas-sdk:4.6.3",
+	"com.cleveradssolutions:ironsource:9.3.0.1",
 	"com.cleveradssolutions:unity:4.16.6.0",
-	"com.cleveradssolutions:google:24.9.0.1",
-	"com.cleveradssolutions:vungle:7.7.0.0",
+	"com.cleveradssolutions:google:25.0.0.0",
+	"com.cleveradssolutions:vungle:7.7.1.0",
 	"com.cleveradssolutions:inmobi:11.1.1.0",
 	"com.cleveradssolutions:chartboost:9.11.1.0",
 	"com.cleveradssolutions:mintegral:17.0.91.0",
-	"com.cleveradssolutions:applovin:13.5.1.2",
+	"com.cleveradssolutions:applovin:13.6.0.0",
 	"com.cleveradssolutions:pangle:7.8.6.0",
-	"com.cleveradssolutions:bigo:5.7.0.0",
+	"com.cleveradssolutions:bigo:5.7.1.0",
 	"com.cleveradssolutions:yango:7.18.2.0",
-	"com.cleveradssolutions:facebook:6.21.0.0",
+	"com.cleveradssolutions:facebook:6.21.0.1",
 	"com.cleveradssolutions:cas-exchange:4.6.2",
 	]
 
