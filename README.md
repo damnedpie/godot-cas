@@ -30,23 +30,6 @@ CAS SDK 4.6.3 Android plugin for Godot. Built on Godot 3.6.2 / Godot 4.6.1 depen
 
 5. (Optional) Add `com.google.android.gms.permission.AD_ID` permission to your Android export template if you want to use AD ID (which is usually the case). You can also add `android.permission.ACCESS_COARSE_LOCATION` and `android.permission.READ_PHONE_STATE` permissions if your app has real usecases for those (this can improve monetization).
 
-### Android 7.1.1 and 7.1.2
-
-Currently there are issues with some adapters causing crashes on API levels 25 and 26 (7.1.1 and 7.1.2). This is caused by some of the adapters forcing 'play-services-ads-identifier:18.2.0' while the adapters in question can only work with 'play-services-ads-identifier:18.1.0'. If you are supporting those API levels, add the following to your `android/build/build.gradle`:
-
-```groovy
-configurations.all {
-    resolutionStrategy {
-        force 'com.google.android.gms:play-services-ads-identifier:18.1.0'
-    }
-}
-
-```
-
-[More info on this issue here.](https://github.com/cleveradssolutions/CAS-Android/issues/26)
-
-Alternatively, just set your build minSdk to 27 to exclude these problematic Android versions.
-
 ### Ad network adapters
 
 This plugin's configuration file `GodotCas.gdap` contains all adapters out of the box (excluding beta and cross-promo). Usually it's not desirable because your app may be not making use of all of them and having unnecessary adapters present will increase build size. Feel free to add/remove adapters and their repositories according to your needs.
@@ -60,7 +43,6 @@ Also check `adapters-list.txt` for precise dependencies and repositories for Opt
 `com.google.android.gms:play-services-ads-identifier` dependency is required if you want to use AD ID (which is usually the case).
 
 `com.tenjin:android-sdk` dependency would be necessary if you want to enable automatic revenue reporting for Tenjin. [**See this wiki page for more details**](https://docs.page/cleveradssolutions/docs/Android/Impression-Level-Data#tenjin).
-
 
 ## Initialization
 
