@@ -1,0 +1,51 @@
+plugins {
+	id("com.android.library") version("8.6.1")
+}
+
+ext.godotVersion = "3.6.2"
+
+android {
+	namespace "com.onecat.godotcas"
+	compileSdk 35
+	compileOptions {
+		sourceCompatibility JavaVersion.VERSION_17
+		targetCompatibility JavaVersion.VERSION_17
+	}
+	defaultConfig {
+		minSdkVersion 24
+		targetSdkVersion 35
+		versionCode pluginVersionCode
+		versionName pluginVersionName
+		consumerProguardFiles("proguard-rules.pro")
+	}
+	buildTypes {
+		debug {
+			minifyEnabled false
+		}
+		release {
+			minifyEnabled false
+		}
+	}
+	ndkVersion '28.1.13356709'
+	buildToolsVersion '35.0.0'
+	libraryVariants.configureEach { variant ->
+		variant.outputs.all { output ->
+			output.outputFileName = "GodotCas.$pluginVersionName.${variant.name}.aar"
+		}
+	}
+}
+
+dependencies {
+	compileOnly 'org.godotengine:godot:3.6.2.stable'
+	compileOnly 'com.cleveradssolutions:cas-sdk:4.6.3'
+	compileOnly 'com.tenjin:android-sdk:+'
+}
+
+tasks.register('buildIntoRelease', Copy) {
+	group = "build"
+	dependsOn tasks.build
+	dependsOn rootProject.tasks.parseAdaptersList
+	from([buildDir.absolutePath, 'outputs', 'aar'].join(File.separator))
+	include("GodotCas.${pluginVersionName}.release.aar")
+	into([rootDir.absolutePath, 'release/godot3'].join(File.separator))
+}

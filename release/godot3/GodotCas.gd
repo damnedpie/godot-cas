@@ -1,20 +1,20 @@
 extends Node
 
 enum AUDIENCE {
-	UNDEFINED = 0
-	CHILDRED = 1
+	UNDEFINED = 0,
+	CHILDREN = 1,
 	NOT_CHILDREN = 2
 }
 
 enum CONSENT_STATUS {
-	UNDEFINED = 0
-	ACCEPTED = 1
+	UNDEFINED = 0,
+	ACCEPTED = 1,
 	DENIED = 2
 }
 
 enum CCPA_STATUS {
-	UNDEFINED = 0
-	OPT_OUT_SALE = 1
+	UNDEFINED = 0,
+	OPT_OUT_SALE = 1,
 	OPT_IN_SALE = 2
 }
 
@@ -112,13 +112,13 @@ func setTestAdMode(enabled:bool) -> void:
 	_cas.setTestAdMode(enabled)
 
 # Call before initializeCas()
-# See https://github.com/cleveradssolutions/CAS-Android/wiki/Impression-Level-Data#automatic-collect-ad-revenue
+# See https://docs.page/cleveradssolutions/docs/Android/Impression-Level-Data#automatic-collect-ad-revenue
 # If using this, make sure you have TenjinSDK dependency in GodotCas.gdap configuration.
 func setTenjinKey(key:String) -> void:
 	_cas.setTenjinKey(key)
 
 # Call before initializeCas()
-# See https://github.com/cleveradssolutions/CAS-Android/wiki/Additional-Meta-AudienceNetwork-steps
+# See https://docs.page/cleveradssolutions/docs/Android/Additional-Meta-AudienceNetwork-steps
 func setFacebookLDU(enabled:bool) -> void:
 	_cas.setFacebookLDU(enabled)
 
@@ -203,13 +203,13 @@ func setRewardedExtraFillInterstitial(enabled:bool) -> void:
 	_cas.setRewardedExtraFillInterstitial(enabled)
 
 # Initializes CASBannerView. See BANNER_SIZE enum.
-# Also see https://github.com/cleveradssolutions/CAS-Android/wiki/Banner-Ads#set-ad-size
+# Also see https://docs.page/cleveradssolutions/docs/Android/Banner-Ads#create-ad-view
 # Can be done before initializing the SDK, but CAS ID must be set beforehand.
 func initializeBanner(bannerSize:int) -> void:
 	_cas.initializeBanner(bannerSize)
 
 # Initializes CASBannerView with adaptive size.
-# See https://github.com/cleveradssolutions/CAS-Android/wiki/Banner-Ads#adaptive-banners
+# See https://docs.page/cleveradssolutions/docs/Android/Banner-Ads#get-the-ad-size
 # Can be done before initializing the SDK, but CAS ID must be set beforehand.
 func initializeAdaptiveBanner(maxWidthDpi:int) -> void:
 	_cas.initializeAdaptiveBanner(maxWidthDpi)
@@ -335,7 +335,7 @@ func setDebugMode(enabled:bool) -> void:
 	_cas.setDebugMode(enabled)
 
 # Adds testing device ID.
-# see https://github.com/cleveradssolutions/CAS-Android/wiki/Enabling-test-ads#enable-test-devices
+# see https://docs.page/cleveradssolutions/docs/Android/Enabling-test-ads#enable-test-devices
 func addTestDeviceId(id:String) -> void:
 	_cas.addTestDeviceId(id)
 
@@ -344,28 +344,28 @@ func addTestDeviceId(id:String) -> void:
 func setTrialAdFreeInterval(seconds:int) -> void:
 	_cas.setTrialAdFreeInterval(seconds)
 
-# See https://github.com/cleveradssolutions/CAS-Android/wiki/Targeting-options#user-id
+# See https://docs.page/cleveradssolutions/docs/Android/Targeting-options#user-id
 func setUserID(userID:String) -> void:
 	_cas.setUserID(userID)
 
-# See https://github.com/cleveradssolutions/CAS-Android/wiki/Targeting-options#user-age
+# See https://docs.page/cleveradssolutions/docs/Android/Targeting-options#user-age
 func setUserAge(age:int) -> void:
 	_cas.setUserAge(age)
 
 # See GENDER enum for the argument.
-# See https://github.com/cleveradssolutions/CAS-Android/wiki/Targeting-options#user-gender
+# See https://docs.page/cleveradssolutions/docs/Android/Targeting-options#user-gender
 func setUserGender(gender:int) -> void:
 	_cas.setUserGender(gender)
 
-# See https://github.com/cleveradssolutions/CAS-Android/wiki/Targeting-options#user-location-auto-collection
+# See https://docs.page/cleveradssolutions/docs/Android/Targeting-options#user-location-auto-collection
 func setUserLocationAutocollection(enabled:bool) -> void:
 	_cas.setUserLocationAutocollection(enabled)
 
-# See https://github.com/cleveradssolutions/CAS-Android/wiki/Targeting-options#app-keywords
+# See https://docs.page/cleveradssolutions/docs/Android/Targeting-options#app-keywords
 func setUserAppKeywords(keywords:PoolStringArray) -> void:
 	_cas.setUserAppKeywords(keywords)
 
-# See https://github.com/cleveradssolutions/CAS-Android/wiki/Targeting-options#app-content-url
+# See https://docs.page/cleveradssolutions/docs/Android/Targeting-options#app-content-url
 func setAppContentUrl(contentUrl:String) -> void:
 	_cas.setAppContentUrl(contentUrl)
 

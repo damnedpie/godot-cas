@@ -4,9 +4,6 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()
     }
-    plugins {
-        id("com.android.library") version "8.6.1"
-    }
 }
 
 dependencyResolutionManagement {
@@ -16,5 +13,7 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+
+include('godot3', 'godot4')
 
 rootProject.name = "Godot CAS Plugin"

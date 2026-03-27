@@ -1,18 +1,19 @@
 # Godot CAS 4.6.3
 [![Godot](https://img.shields.io/badge/Godot%20Engine-3.6.2-blue?style=for-the-badge&logo=godotengine&logoSize=auto)](https://godotengine.org/)
+[![Godot](https://img.shields.io/badge/Godot%20Engine-4.6.1-blue?style=for-the-badge&logo=godotengine&logoSize=auto)](https://godotengine.org/)
 [![CAS.AI](https://img.shields.io/badge/CAS.AI_SDK_4.6.3-blue?style=for-the-badge&logoSize=auto)](https://cas.ai/)
 [![GitHub License](https://img.shields.io/github/license/damnedpie/godot-cas?style=for-the-badge)](https://github.com/damnedpie/godot-cas/blob/main/LICENSE)
 [![GitHub Repo stars](https://img.shields.io/github/stars/damnedpie/godot-cas?style=for-the-badge&logo=github&logoSize=auto&color=%23FFD700)](https://github.com/damnedpie/godot-cas/stargazers)
 
-CAS SDK 4.6.3 Android plugin for Godot. Built on Godot 3.6.2 dependency.
+CAS SDK 4.6.3 Android plugin for Godot. Built on Godot 3.6.2 / Godot 4.6.1 dependency.
 
-[**Official Android Wiki**](https://github.com/cleveradssolutions/CAS-Android/wiki)
+[**Official Docs**](https://docs.page/cleveradssolutions/docs/general)
 
 ## Setup
 
 ### Project integration
 
-1. Add plugin files (.gd, .gdap, .aar) into your project's `android/plugins`.
+1. Add plugin files (.gd, .gdap, .aar) from `godot3` or `godot4` folder into your project's `android/plugins`.
 
 2. Add `GodotCas.gd` as a singleton (autoload) to your project.
 
@@ -44,20 +45,21 @@ configurations.all {
 
 [More info on this issue here.](https://github.com/cleveradssolutions/CAS-Android/issues/26)
 
+Alternatively, just set your build minSdk to 27 to exclude these problematic Android versions.
 
 ### Ad network adapters
 
 This plugin's configuration file `GodotCas.gdap` contains all adapters out of the box (excluding beta and cross-promo). Usually it's not desirable because your app may be not making use of all of them and having unnecessary adapters present will increase build size. Feel free to add/remove adapters and their repositories according to your needs.
 
-Make sure to check out [**this list of adapters**](https://github.com/cleveradssolutions/CAS-Android/tree/master/Adapters#casai-mediation-adapters) and also [**this guide page**](https://github.com/cleveradssolutions/CAS-Android/wiki/Manual-setup) from CAS official wiki.
+Make sure to check out [**this list of adapters**](https://github.com/cleveradssolutions/CAS-Android/tree/master/Adapters#casai-mediation-adapters) and also [**this guide page**](https://docs.page/cleveradssolutions/docs/Android/Manual-setup) from CAS official wiki.
 
 Also check `adapters-list.txt` for precise dependencies and repositories for Optimal and Families presets.
 
 ### Other optional dependencies
 
-`com.google.android.gms:play-services-ads-identifier` dependency is required if you want to use AD ID (which is preferrable).
+`com.google.android.gms:play-services-ads-identifier` dependency is required if you want to use AD ID (which is usually the case).
 
-`com.tenjin:android-sdk` dependency would be necessary if you want to enable automatic revenue reporting for Tenjin. [**See this wiki page for more details**](https://github.com/cleveradssolutions/CAS-Android/wiki/Impression-Level-Data#tenjin).
+`com.tenjin:android-sdk` dependency would be necessary if you want to enable automatic revenue reporting for Tenjin. [**See this wiki page for more details**](https://docs.page/cleveradssolutions/docs/Android/Impression-Level-Data#tenjin).
 
 
 ## Initialization
@@ -80,11 +82,11 @@ setUseBuiltInConsentManager(enabled:bool) -> void
 # If enabled, turns test ads mode on.
 setTestAdMode(enabled:bool) -> void
 
-# See https://github.com/cleveradssolutions/CAS-Android/wiki/Impression-Level-Data#automatic-collect-ad-revenue
+# See https://docs.page/cleveradssolutions/docs/Android/Impression-Level-Data#automatic-collect-ad-revenue
 # If using this, make sure you have TenjinSDK dependency in GodotCas.gdap configuration.
 setTenjinKey(key:String) -> void
 
-# See https://github.com/cleveradssolutions/CAS-Android/wiki/Additional-Meta-AudienceNetwork-steps
+# See https://docs.page/cleveradssolutions/docs/Android/Additional-Meta-AudienceNetwork-steps
 setFacebookLDU(enabled:bool) -> void
 ```
 
@@ -95,13 +97,13 @@ setFacebookLDU(enabled:bool) -> void
 setDebugMode(enabled:bool) -> void
 
 # Adds testing device ID.
-# see https://github.com/cleveradssolutions/CAS-Android/wiki/Enabling-test-ads#enable-test-devices
+# see https://docs.page/cleveradssolutions/docs/Android/Enabling-test-ads#enable-test-devices
 addTestDeviceId(id:String) -> void
 ```
 
 ## Working with user data consent
 
-[**Official wiki page**](https://github.com/cleveradssolutions/CAS-Android/wiki/User-Consent-Flow)
+[**Official wiki page**](https://docs.page/cleveradssolutions/docs/Android/User-Consent-Flow)
 
 ### Automatic flow
 
@@ -158,7 +160,7 @@ setConsentForceTesting(enabled:bool) -> void
 ```
 
 ## Children-directed treatment
-[**Official wiki page**](https://github.com/cleveradssolutions/CAS-Android/wiki/Privacy-Regulations)
+[**Official wiki page**](https://docs.page/cleveradssolutions/docs/Android/Initialize-CAS#prohibition-on-personal-information-from-children)
 
 Developers who have knowledge of specific individuals as being COPPA-applicable should make use of the API discussed below to inform CAS and all downstream consumers of this information.
 
@@ -181,7 +183,7 @@ This plugin supports Interstitial, Rewarded, Banner and App Open ad types. Nativ
 Every ad-type has a corresponding initialization function: `initializeInterstitial()`, `initializeRewarded()` and so on. Make sure you call such a function before calling other methods relevant to an ad type.
 
 ### Interstitial
-[**Official wiki page** ](https://github.com/cleveradssolutions/CAS-Android/wiki/Interstitial-Ads)
+[**Official wiki page** ](https://docs.page/cleveradssolutions/docs/Android/Interstitial-Ads)
 
 ```gdscript
 # Initializes the CASInterstitial object in the plugin and creates callbacks.
@@ -210,7 +212,7 @@ restartIntervalInterstitial() -> void
 ```
 
 ### Rewarded
-[**Official wiki page**](https://github.com/cleveradssolutions/CAS-Android/wiki/Rewarded-Ads)
+[**Official wiki page**](https://docs.page/cleveradssolutions/docs/Android/Rewarded-Ads)
 ```gdscript
 # Initializes the CASRewarded object in the plugin and creates callbacks.
 initializeRewarded() -> void
@@ -235,14 +237,14 @@ setRewardedExtraFillInterstitial(enabled:bool) -> void
 ```
 
 ### Banner
-[**Official wiki page**](https://github.com/cleveradssolutions/CAS-Android/wiki/Banner-Ads)
+[**Official wiki page**](https://docs.page/cleveradssolutions/docs/Android/Banner-Ads)
 ```gdscript
 # Initializes CASBannerView. See BANNER_SIZE enum.
-# Also see https://github.com/cleveradssolutions/CAS-Android/wiki/Banner-Ads#set-ad-size
+# Also see https://docs.page/cleveradssolutions/docs/Android/Banner-Ads#create-ad-view
 initializeBanner(bannerSize:int) -> void
 
 # Initializes CASBannerView with adaptive size.
-# See https://github.com/cleveradssolutions/CAS-Android/wiki/Banner-Ads#adaptive-banners
+# See https://docs.page/cleveradssolutions/docs/Android/Banner-Ads#get-the-ad-size
 initializeAdaptiveBanner(maxWidthDpi:int) -> void
 
 # Loads the banner ad.
@@ -277,7 +279,7 @@ getBannerHeight() -> int
 ```
 
 ### App Open ads
-[**Official wiki page**](https://github.com/cleveradssolutions/CAS-Android/wiki/App-Open-Ads)
+[**Official wiki page**](https://docs.page/cleveradssolutions/docs/Android/App-Open-Ads)
 ```gdscript
 # Initializes the CASAppOpen object in the plugin and creates callbacks.
 initializeAppOpenAd() -> void
@@ -318,13 +320,13 @@ logTenjinPurchaseEvent(sku:String, currencyCode:String, quantity:int, price:floa
 
 ## Targeting options
 
-[**Official wiki page**](https://github.com/cleveradssolutions/CAS-Android/wiki/Targeting-options)
+[**Official wiki page**](https://docs.page/cleveradssolutions/docs/Android/Targeting-options)
 
 ```gdscript
-# See https://github.com/cleveradssolutions/CAS-Android/wiki/Targeting-options#user-id
+# See https://docs.page/cleveradssolutions/docs/Android/Targeting-options#user-id
 setUserID(userID:String) -> void
 
-# See https://github.com/cleveradssolutions/CAS-Android/wiki/Targeting-options#user-age
+# See https://docs.page/cleveradssolutions/docs/Android/Targeting-options#user-age
 setUserAge(age:int) -> void
 
 enum GENDER {
@@ -334,16 +336,16 @@ enum GENDER {
 }
 
 # See GENDER enum for the argument.
-# See https://github.com/cleveradssolutions/CAS-Android/wiki/Targeting-options#user-gender
+# See https://docs.page/cleveradssolutions/docs/Android/Targeting-options#user-gender
 setUserGender(gender:int) -> void
 
-# See https://github.com/cleveradssolutions/CAS-Android/wiki/Targeting-options#user-location-auto-collection
+# See https://docs.page/cleveradssolutions/docs/Android/Targeting-options#user-location-auto-collection
 setUserLocationAutocollection(enabled:bool) -> void
 
-# See https://github.com/cleveradssolutions/CAS-Android/wiki/Targeting-options#app-keywords
+# See https://docs.page/cleveradssolutions/docs/Android/Targeting-options#app-keywords
 setUserAppKeywords(keywords:PoolStringArray) -> void
 
-# See https://github.com/cleveradssolutions/CAS-Android/wiki/Targeting-options#app-content-url
+# See https://docs.page/cleveradssolutions/docs/Android/Targeting-options#app-content-url
 setAppContentUrl(contentUrl:String) -> void
 ```
 
@@ -352,12 +354,12 @@ setAppContentUrl(contentUrl:String) -> void
 CAS SDK can output integration status to logcat, displaying what adapters are integrated or not.
 ```gdscript
 # Call Integration Helper and check current integration in logcat. LOG TAG: CASIntegrationHelper
-func validateIntegration() -> void
+validateIntegration() -> void
 ```
 
 You can check if user has WIFI/Mobile traffic enabled on their device. This DOES NOT guarantee a working internet connection and only checks the status of WIFI and mobile traffic enabled in Android. For example, if user is connected to a WIFI but this WIFI doesn't give access to Internet, this will still return true.
 ```gdscript
 # Returns true if the device has WIFI or Mobile traffic enabled. This doesn't guarantee real internet connection.
-func isWifiOrMobileInternetEnabled() -> bool
+isWifiOrMobileInternetEnabled() -> bool
 
 ```
