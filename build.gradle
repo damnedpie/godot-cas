@@ -1,5 +1,5 @@
 ext.zipName = "godot-cas"
-ext.pluginVersionName = "4.6.3"
+ext.pluginVersionName = "4.6.5"
 ext.pluginVersionCode = 1
 
 import groovy.json.JsonSlurper;
@@ -57,7 +57,7 @@ tasks.register('buildGithubRelease', Zip) {
     dependsOn tasks.parseAdaptersList
     from([rootDir.absolutePath, 'release'].join(File.separator))
     include("**/*.gd", "**/*.gdap", "**/*.aar", "adapters-list.txt")
-    archiveFileName = "${zipName}-${pluginVersionName}(${pluginVersionCode}).zip"
+    archiveFileName = "${zipName}-${pluginVersionName}-rev${pluginVersionCode}.zip"
     destinationDirectory = file([rootDir.absolutePath, 'release'].join(File.separator))
     def metaTxt = new File([rootDir.absolutePath, 'release', "github-meta.txt"].join(File.separator))
     metaTxt.text = "SDK ${pluginVersionName} rev.${pluginVersionCode}"

@@ -37,7 +37,7 @@ android {
 
 dependencies {
 	compileOnly 'org.godotengine:godot:4.6.1.stable'
-	compileOnly 'com.cleveradssolutions:cas-sdk:4.6.3'
+	compileOnly 'com.cleveradssolutions:cas-sdk:4.6.5'
 	compileOnly 'com.tenjin:android-sdk:+'
 }
 

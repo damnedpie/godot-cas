@@ -1,11 +1,11 @@
-# Godot CAS 4.6.3
+# Godot CAS 4.6.5
 [![Godot](https://img.shields.io/badge/Godot%20Engine-3.6.2-blue?style=for-the-badge&logo=godotengine&logoSize=auto)](https://godotengine.org/)
 [![Godot](https://img.shields.io/badge/Godot%20Engine-4.6.1-blue?style=for-the-badge&logo=godotengine&logoSize=auto)](https://godotengine.org/)
-[![CAS.AI](https://img.shields.io/badge/CAS.AI_SDK_4.6.3-blue?style=for-the-badge&logoSize=auto)](https://cas.ai/)
+[![CAS.AI](https://img.shields.io/badge/CAS.AI_SDK_4.6.5-blue?style=for-the-badge&logoSize=auto)](https://cas.ai/)
 [![GitHub License](https://img.shields.io/github/license/damnedpie/godot-cas?style=for-the-badge)](https://github.com/damnedpie/godot-cas/blob/main/LICENSE)
 [![GitHub Repo stars](https://img.shields.io/github/stars/damnedpie/godot-cas?style=for-the-badge&logo=github&logoSize=auto&color=%23FFD700)](https://github.com/damnedpie/godot-cas/stargazers)
 
-CAS SDK 4.6.3 Android plugin for Godot. Built on Godot 3.6.2 / Godot 4.6.1 dependency.
+CAS SDK 4.6.5 Android plugin for Godot. Built on Godot 3.6.2 / Godot 4.6.1 dependency.
 
 [**Official Docs**](https://docs.page/cleveradssolutions/docs/general)
 
