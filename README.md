@@ -1,7 +1,7 @@
 # Godot CAS 4.6.5
+[![CAS.AI](https://img.shields.io/badge/CAS.AI_SDK_4.6.5-blue?style=for-the-badge&logoSize=auto)](https://cas.ai/)
 [![Godot](https://img.shields.io/badge/Godot%20Engine-3.6.2-blue?style=for-the-badge&logo=godotengine&logoSize=auto)](https://godotengine.org/)
 [![Godot](https://img.shields.io/badge/Godot%20Engine-4.6.1-blue?style=for-the-badge&logo=godotengine&logoSize=auto)](https://godotengine.org/)
-[![CAS.AI](https://img.shields.io/badge/CAS.AI_SDK_4.6.5-blue?style=for-the-badge&logoSize=auto)](https://cas.ai/)
 [![GitHub License](https://img.shields.io/github/license/damnedpie/godot-cas?style=for-the-badge)](https://github.com/damnedpie/godot-cas/blob/main/LICENSE)
 [![GitHub Repo stars](https://img.shields.io/github/stars/damnedpie/godot-cas?style=for-the-badge&logo=github&logoSize=auto&color=%23FFD700)](https://github.com/damnedpie/godot-cas/stargazers)
 
@@ -12,6 +12,8 @@ CAS SDK 4.6.5 Android plugin for Godot. Built on Godot 3.6.2 / Godot 4.6.1 depen
 ## Setup
 
 ### Project integration
+
+#### Option 1: Manual
 
 1. Add plugin files (.gd, .gdap, .aar) from `godot3` or `godot4` folder into your project's `android/plugins`.
 
@@ -29,6 +31,137 @@ CAS SDK 4.6.5 Android plugin for Godot. Built on Godot 3.6.2 / Godot 4.6.1 depen
 4. Get your `cas_settings[settings_id].json` file from CAS dashboard and put it into `android/build/res/raw` folder.
 
 5. (Optional) Add `com.google.android.gms.permission.AD_ID` permission to your Android export template if you want to use AD ID (which is usually the case). You can also add `android.permission.ACCESS_COARSE_LOCATION` and `android.permission.READ_PHONE_STATE` permissions if your app has real usecases for those (this can improve monetization).
+
+#### Option 2: CAS Gradle plugin
+
+CAS AI provides a Gradle plugin to make integration easier. It injects all the required dependencies, Google AdMob Pub ID, Tenjin (optional) and Ads Identifier (optional) dependencies into your Android build automatically.
+
+To use CAS Gradle plugin, there are some key differences from Manual integration flow that you have to ensure.
+
+1. Make sure that Godot CAS config file (.gdap) doesn't contain any dependencies or repositores:
+```
+[config]
+
+name="GodotCas"
+binary_type="local"
+binary="GodotCas.4.6.5.release.aar"
+
+[dependencies]
+
+remote=[]
+custom_maven_repos=[]
+```
+
+2. Make sure that your `android/build/AndroidManifest.xml` **DOES NOT** contain Google AdMob Pub ID to avoid conflicts with the injection that CAS Gradle plugin will make.
+
+Now, to include CAS Gradle plugin:
+
+1. Go to your `android/build/build.gradle` and add CAS Gradle plugin to the `plugins` section in the top of the file:
+
+```groovy
+/ Gradle build config for Godot Engine's Android port.
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    // CAS Gradle Plugin
+    id 'com.cleveradssolutions.gradle-plugin' version "4.6.5"
+	//...
+	//...
+}
+```
+
+2. Add the repositories CAS SDK and adapters need to fetch the dependencies (actual informattion [here](https://docs.page/cleveradssolutions/docs/Android#maven-repositories)) into the allProjects / dependencies block:
+
+```groovy
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url "https://central.sonatype.com/repository/maven-snapshots/"}
+
+        // CAS AI repositories
+        maven {
+            name = "MintegralAdsRepo"
+            url = uri("https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea")
+            content { includeGroup("com.mbridge.msdk.oversea") }
+        }
+        maven {
+            name = "PangleAdsRepo"  
+            url = uri("https://artifact.bytedance.com/repository/pangle")
+            content { includeGroup("com.pangle.global") }
+        }
+        maven {
+            name = "ChartboostAdsRepo"  
+            url = uri("https://cboost.jfrog.io/artifactory/chartboost-ads/")
+            content {
+                includeGroup("com.chartboost")
+                includeGroup("com.iab.omid.library")
+            }
+        }
+        maven {
+            name = "YSONetworkRepo"
+            url = uri("https://ysonetwork.s3.eu-west-3.amazonaws.com/sdk/android")
+            content { includeGroup("com.ysocorp") }
+        }
+        maven {
+            name = "OguryAdsRepo"  
+            url = uri("https://maven.ogury.co")
+            content {
+                includeGroup("co.ogury")
+                includeGroup("co.ogury.module")
+            }
+        }
+        maven {
+            name = "SmaatoAdsRepo"
+            url = uri("https://s3.amazonaws.com/smaato-sdk-releases/")
+            content { 
+                includeGroup("com.smaato.android.sdk")
+                includeGroup("com.verve")
+            }
+        }
+        maven {
+            name = "VerveAdsRepo"
+            url = uri("https://verve.jfrog.io/artifactory/verve-gradle-release")
+            content {
+                includeGroup("net.pubnative")
+                includeGroup("com.verve")
+            }
+        }
+
+        // Godot user plugins custom maven repos
+        String[] mavenRepos = getGodotPluginsMavenRepos()
+        if (mavenRepos != null && mavenRepos.size() > 0) {
+            for (String repoUrl : mavenRepos) {
+                maven {
+                    url repoUrl
+                }
+            }
+        }
+    }
+}
+```
+
+3. Add the `cas{}` configuration block somewhere below `plugins{}` block. Here's an example of configuration for Optimal Ads with Tenjin and Advertising Identifier included:
+
+```groovy
+// Gradle build config for Godot Engine's Android port.
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    // CAS Gradle Plugin
+    id 'com.cleveradssolutions.gradle-plugin' version "4.6.5"
+}
+
+cas {
+    includeOptimalAds = true
+    includeTenjinSDK = true
+    useAdvertisingId = true
+}
+```
+
+Note that you don't need to specify casId here due to it usually being your package name (e.g. "com.yourstudio.yourgame") and it is specified by Godot Android build as applicationId which CAS Gradle plugin fetches on its own.
 
 ### Ad network adapters
 
