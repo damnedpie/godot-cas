@@ -1,5 +1,5 @@
 ext.zipName = "godot-cas"
-ext.pluginVersionName = "4.6.5"
+ext.pluginVersionName = "4.6.6"
 ext.pluginVersionCode = 1
 
 import groovy.json.JsonSlurper;
