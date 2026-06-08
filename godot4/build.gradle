@@ -2,7 +2,7 @@ plugins {
 	id("com.android.library") version("8.6.1")
 }
 
-ext.godotVersion = "4.6.1"
+ext.godotVersion = "4.6.3"
 
 android {
 	namespace "com.onecat.godotcas"
@@ -37,7 +37,7 @@ android {
 
 dependencies {
 	compileOnly "org.godotengine:godot:${godotVersion}.stable"
-	compileOnly 'com.cleveradssolutions:cas-sdk:4.6.6'
+	compileOnly 'com.cleveradssolutions:cas-sdk:4.7.3'
 	compileOnly 'com.tenjin:android-sdk:+'
 }
 
