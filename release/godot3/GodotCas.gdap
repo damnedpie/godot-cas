@@ -27,7 +27,7 @@ remote=[
 	]
 
 custom_maven_repos=[
-	"https://cboost.jfrog.io/artifactory/chartboost-ads/",
 	"https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea",
-	"https://artifact.bytedance.com/repository/pangle",
+    "https://artifact.bytedance.com/repository/pangle",
+    "https://ysonetwork.s3.eu-west-3.amazonaws.com/sdk/android",
 ]
